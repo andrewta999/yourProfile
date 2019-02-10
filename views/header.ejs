@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div style="margin-bottom:60px">
+    <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top" >
+      <div class="container">
+        <div class="navbar-header" >
+          <a class="navbar-brand" href="/">Your Profile</a>
+        </div>
+        <ul class="navbar-nav navbar-right">
+          <% if (currentUser) { %>
+            <li class="nav-item">
+              <a href="/edit" class="nav-link">Hello, <%= currentUser.name() %></a>
+            </li>
+            <li class="nav-item"><a href="/logout" class="nav-link">Log out</a></li>
+          <% } else { %>
+            <li class="nav-item"><a href="/login" class="nav-link">Log in</a></li>
+            <li class="nav-item"><a href="/signup" class="nav-link">Sign up</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+    <div class="container" >
+      <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger" role="alert">
+          <%= error %>
+        </div>
+      <% }) %>
+
+      <% infos.forEach(function(info) { %>
+        <div class="alert alert-info" role="alert">
+          <%= info %>
+        </div>
+      <% }) %>

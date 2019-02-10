@@ -1,0 +1,15 @@
+<% include header %>
+
+<h1>Welcome to Your Profile!</h1>
+
+<% users.forEach(function(user) { %>
+  <div class="card">
+    <a href="/users/<%= user.username %>" style="text-decoration:none;color:#000000" class="card-header btn btn-outline-primary"><%= user.name() %></a>
+    <% if (user.bio) { %>
+      <div class="card-body btn btn-outline-primary"><%= user.bio %></div>
+    <% } %>
+  </div>
+  <br />
+<% }) %>
+
+<% include footer %>
