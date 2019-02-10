@@ -13,7 +13,7 @@ const setupPassport = require('./setuppassport');
 const app = express();
 
 // connect to database
-mongoose.connect("mongodb+srv://andrewta:Network1324351@cluster0-azsje.mongodb.net/test?retryWrites=true",  { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI,   { useNewUrlParser: true });
 setupPassport();
 mongoose.set('useCreateIndex', true);
 
@@ -22,11 +22,13 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
 app.use(session({
   secret: "You will never guess",
   resave: true,
   saveUninitialized: true
 }));
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
